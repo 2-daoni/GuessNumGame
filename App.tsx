@@ -1,20 +1,34 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { useState } from "react";
+import { SafeAreaView, StyleSheet, View } from "react-native";
+import Colors from "./constants/Colors";
+import GameScreen from "./screens/GameScreen";
+import GameScreen2 from "./screens/GameScreen2";
+import StartScreen from "./screens/StartScreen";
+import StartScreen2 from "./screens/StartScreen2";
 
 export default function App() {
+  const [userNum, setUserNum] = useState<number>();
+
+  const handleSelectNum = (num: number) => {
+    setUserNum(num);
+  };
+
+  let screen = <StartScreen handleSelectNum={handleSelectNum} />;
+
+  if (userNum) {
+    screen = <GameScreen userNum={userNum} />;
+  }
+
   return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
+    <View style={styles.rootScreen}>
+      <SafeAreaView style={styles.rootScreen}>{screen}</SafeAreaView>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
+  rootScreen: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    backgroundColor: Colors.background,
   },
 });
