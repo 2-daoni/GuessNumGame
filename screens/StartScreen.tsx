@@ -1,7 +1,9 @@
-import { Alert, StyleSheet, TextInput, View } from "react-native";
+import { Alert, StyleSheet, Text, TextInput, View } from "react-native";
 import { useState } from "react";
-import Button from "../components/Button";
+import PrimaryButton from "../components/commons/PrimaryButton";
 import Colors from "../constants/Colors";
+import Title from "../components/commons/Title";
+import IntroductionText from "../components/IntroductionText";
 
 type Props = {
   handleSelectNum: (num: number) => void;
@@ -43,16 +45,20 @@ const StartScreen = ({ handleSelectNum }: Props) => {
 
   return (
     <View style={styles.container}>
-      <TextInput
-        style={styles.input}
-        // maxLength={2}
-        keyboardType="number-pad"
-        value={currentNum}
-        onChangeText={handleNumber}
-      />
-      <View style={styles.btnContainer}>
-        <Button onPress={handleReset}>Reset</Button>
-        <Button onPress={handleConfirm}>Confirm</Button>
+      <Title title="? Guess My Number ?" />
+      <View style={styles.inputContainer}>
+        <IntroductionText text="숫자를 입력해주세요" />
+        <TextInput
+          style={styles.input}
+          // maxLength={2}
+          keyboardType="number-pad"
+          value={currentNum}
+          onChangeText={handleNumber}
+        />
+        <View style={styles.btnContainer}>
+          <PrimaryButton onPress={handleReset}>Reset</PrimaryButton>
+          <PrimaryButton onPress={handleConfirm}>Confirm</PrimaryButton>
+        </View>
       </View>
     </View>
   );
@@ -62,8 +68,11 @@ export default StartScreen;
 
 const styles = StyleSheet.create({
   container: {
-    marginTop: 100,
-    marginHorizontal: 20,
+    padding: 50,
+    marginTop: 50,
+  },
+  inputContainer: {
+    marginTop: 50,
     borderRadius: 15,
     justifyContent: "center",
     alignItems: "center",

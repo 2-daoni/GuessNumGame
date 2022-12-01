@@ -3,15 +3,16 @@ import { Pressable, StyleSheet, Text, View } from "react-native";
 type Props = {
   children: any;
   onPress: any;
+  style?: any;
 };
 
-const Button = ({ children, onPress }: Props) => {
+const Button = ({ children, onPress, style }: Props) => {
   return (
     <Pressable
       style={({ pressed }) => pressed && styles.pressedBtn}
       onPress={onPress}
     >
-      <View style={styles.btnContainer}>
+      <View style={{ ...styles.btnContainer, ...style }}>
         <Text>{children}</Text>
       </View>
     </Pressable>
