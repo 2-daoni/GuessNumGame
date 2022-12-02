@@ -1,5 +1,13 @@
 import { useEffect, useState } from "react";
-import { Alert, FlatList, StyleSheet, Text, View } from "react-native";
+import {
+  Alert,
+  Dimensions,
+  FlatList,
+  StyleSheet,
+  Text,
+  useWindowDimensions,
+  View,
+} from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import NumContainer from "../components/commons/NumContainert";
 import PrimaryButton from "../components/commons/PrimaryButton";
@@ -45,6 +53,7 @@ const GameScreen = ({ userNum, handleGameOver }: Props) => {
   const [currentGuess, setCurrentGuess] = useState<number>(initialGuess);
   const [rounds, setRounds] = useState<Array<any>>([initialGuess]);
   const roundsLength = rounds.length;
+  const { width, height } = useWindowDimensions();
 
   const handleNextGuess = (direction: "lower" | "greater") => {
     if (typeof userNum !== "undefined") {
@@ -137,6 +146,7 @@ const styles = StyleSheet.create({
   },
   btnContainer: {
     flexDirection: "row",
+    justifyContent: "center",
   },
   btn: {
     width: 150,

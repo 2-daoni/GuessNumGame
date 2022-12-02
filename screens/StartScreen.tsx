@@ -1,4 +1,12 @@
-import { Alert, StyleSheet, Text, TextInput, View } from "react-native";
+import {
+  Alert,
+  KeyboardAvoidingView,
+  ScrollView,
+  StyleSheet,
+  Text,
+  TextInput,
+  View,
+} from "react-native";
 import { useState } from "react";
 import PrimaryButton from "../components/commons/PrimaryButton";
 import Colors from "../constants/Colors";
@@ -44,29 +52,36 @@ const StartScreen = ({ handleSelectNum }: Props) => {
   };
 
   return (
-    <View style={styles.container}>
-      <Title title="? Guess My Number ?" />
-      <View style={styles.inputContainer}>
-        <IntroductionText text="숫자를 입력해주세요" />
-        <TextInput
-          style={styles.input}
-          // maxLength={2}
-          keyboardType="number-pad"
-          value={currentNum}
-          onChangeText={handleNumber}
-        />
-        <View style={styles.btnContainer}>
-          <PrimaryButton onPress={handleReset}>Reset</PrimaryButton>
-          <PrimaryButton onPress={handleConfirm}>Confirm</PrimaryButton>
+    <ScrollView style={styles.screen}>
+      <KeyboardAvoidingView style={styles.screen} behavior="position">
+        <View style={styles.container}>
+          <Title title="? Guess My Number ?" />
+          <View style={styles.inputContainer}>
+            <IntroductionText text="숫자를 입력해주세요" />
+            <TextInput
+              style={styles.input}
+              // maxLength={2}
+              keyboardType="number-pad"
+              value={currentNum}
+              onChangeText={handleNumber}
+            />
+            <View style={styles.btnContainer}>
+              <PrimaryButton onPress={handleReset}>Reset</PrimaryButton>
+              <PrimaryButton onPress={handleConfirm}>Confirm</PrimaryButton>
+            </View>
+          </View>
         </View>
-      </View>
-    </View>
+      </KeyboardAvoidingView>
+    </ScrollView>
   );
 };
 
 export default StartScreen;
 
 const styles = StyleSheet.create({
+  screen: {
+    flex: 1,
+  },
   container: {
     padding: 50,
     marginTop: 50,

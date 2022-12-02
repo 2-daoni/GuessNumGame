@@ -14,5 +14,6 @@ export default IntroductionText;
 const styles = StyleSheet.create({
   text: {
     color: Colors.title,
+    textAlign: "center",
   },
 });
